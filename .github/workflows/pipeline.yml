@@ -1,0 +1,106 @@
+name: Huru Garden CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+    types: [opened, synchronize, reopened]
+
+jobs:
+  backend_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+      - name: Install server dependencies
+        working-directory: server
+        run: npm ci
+      - name: Check server JavaScript
+        run: find server -name '*.js' -print0 | xargs -0 -n1 node --check
+
+  frontend_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - name: Install client dependencies
+        working-directory: client
+        run: npm ci
+      - name: Build client
+        working-directory: client
+        run: npm run build
+
+  build_and_test:
+    needs: [backend_check, frontend_check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validation complete
+        run: echo "Backend and frontend checks passed"
+
+  deploy:
+    needs: [build_and_test]
+    runs-on: ubuntu-latest
+    env:
+      RENDER_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+    steps:
+      - name: Trigger deployment
+        if: ${{ github.event_name == 'push' && env.RENDER_HOOK != '' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        run: curl --fail --silent --show-error --retry 3 "$RENDER_HOOK"
+
+  notify_success:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_URL: ${{ secrets.DISCORD_WEBHOOK }}
+    steps:
+      - name: Notify Deployment Success
+        if: ${{ success() && github.event_name == 'push' && env.DISCORD_URL != '' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content": "Successfully deployed custom pipeline app to Render!"}' \
+          "$DISCORD_URL"
+
+  notify_failure:
+    needs: [backend_check, frontend_check, build_and_test, deploy]
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    runs-on: ubuntu-latest
+    env:
+      DISCORD_URL: ${{ secrets.DISCORD_WEBHOOK }}
+    steps:
+      - name: Notify Build Failure
+        if: ${{ env.DISCORD_URL != '' }}
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content": "Pipeline failed! Commit: ${{ github.sha }} by ${{ github.actor }}"}' \
+          "$DISCORD_URL"
+
+  tag_release:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      RENDER_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' && env.RENDER_HOOK != '' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+        uses: anothrNick/github-tag-action@1.75.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
