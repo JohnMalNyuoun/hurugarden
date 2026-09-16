@@ -10,8 +10,19 @@ const hasSmtp =
   Boolean(smtpPassword);
 const hasResend = Boolean(process.env.RESEND_API_KEY);
 const recipient = process.env.CONTACT_EMAIL || process.env.SMTP_USER;
+const defaultResendFrom = "Huru Garden <onboarding@resend.dev>";
+const configuredResendFrom = process.env.EMAIL_FROM?.trim();
 const resendFrom =
-  process.env.EMAIL_FROM || "Huru Garden <onboarding@resend.dev>";
+  !configuredResendFrom ||
+  configuredResendFrom.includes("your-verified-domain.com")
+    ? defaultResendFrom
+    : configuredResendFrom;
+
+if (emailProvider === "resend" && resendFrom === defaultResendFrom) {
+  console.warn(
+    "Using Resend test sender onboarding@resend.dev. Set EMAIL_FROM to a verified sender when a domain is available.",
+  );
+}
 
 class EmailDeliveryError extends Error {
   constructor(message, details = {}) {
