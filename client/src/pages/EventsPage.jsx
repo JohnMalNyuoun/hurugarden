@@ -1,10 +1,21 @@
+import React from "react";
 import BookingForm from "../components/forms/BookingForm";
+import hurueventsimg from "../../../assets/huruevent.jpg";
+
 export default function EventsPage() {
   return (
     <div className="inner-page">
-      <section className="page-hero events-hero">
+      <section
+        className="page-hero events-hero"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(41, 19, 12, 0.88), rgba(41, 19, 12, 0.55)), url(${hurueventsimg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <p className="eyebrow light">
-          Your people, your moment <span>✳</span>
+          Your people, your moment <span></span>
         </p>
         <h1>
           Make a day
@@ -16,6 +27,7 @@ export default function EventsPage() {
           gathering for.
         </p>
       </section>
+
       <section className="event-layout section-pad">
         <div>
           <p className="eyebrow">Host at Huru</p>
