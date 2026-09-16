@@ -27,6 +27,22 @@ const transporter = hasSmtp
     })
   : null;
 
+export function getMailerStatus() {
+  return {
+    configured: hasSmtp,
+    host: process.env.SMTP_HOST || null,
+    port: smtpPort,
+    user: process.env.SMTP_USER || null,
+    recipient: process.env.CONTACT_EMAIL || process.env.SMTP_USER || null,
+  };
+}
+
+export async function verifyMailer() {
+  if (!transporter) return false;
+  await transporter.verify();
+  return true;
+}
+
 export async function sendNotification({ subject, replyTo, text }) {
   if (!transporter) {
     if (process.env.NODE_ENV === "production") {
@@ -45,7 +61,11 @@ export async function sendNotification({ subject, replyTo, text }) {
       text,
     });
   } catch (error) {
-    console.error("SMTP notification failed:", error.message);
+    console.error("SMTP notification failed:", {
+      message: error.message,
+      code: error.code,
+      responseCode: error.responseCode,
+    });
     throw new Error("Email notification could not be sent.");
   }
 }

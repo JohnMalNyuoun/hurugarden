@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
+import { getMailerStatus, verifyMailer } from "./utils/mailer.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -27,6 +28,19 @@ app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(500).json({ message: "Something went wrong." });
 });
-app.listen(port, () =>
-  console.log(`Huru Garden API listening on port ${port}`),
-);
+app.listen(port, async () => {
+  console.log(`Huru Garden API listening on port ${port}`);
+  console.log("SMTP configuration:", getMailerStatus());
+  if (getMailerStatus().configured) {
+    try {
+      await verifyMailer();
+      console.log("SMTP connection verified.");
+    } catch (error) {
+      console.error("SMTP connection verification failed:", {
+        message: error.message,
+        code: error.code,
+        responseCode: error.responseCode,
+      });
+    }
+  }
+});
