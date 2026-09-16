@@ -48,6 +48,8 @@ export function getMailerStatus() {
     port: emailProvider === "resend" ? 443 : smtpPort,
     user: process.env.SMTP_USER || null,
     recipient: recipient || null,
+    sender:
+      emailProvider === "resend" ? resendFrom : process.env.SMTP_USER || null,
   };
 }
 
@@ -82,7 +84,10 @@ async function sendWithResend({ subject, replyTo, text }) {
     }),
   });
   if (!response.ok) {
-    throw new Error(`Resend email failed (${response.status}).`);
+    const details = await response.text();
+    throw new Error(
+      `Resend email failed (${response.status}): ${details.slice(0, 500)}`,
+    );
   }
 }
 
@@ -95,7 +100,11 @@ export async function sendNotification({ subject, replyTo, text }) {
       await sendWithResend({ subject, replyTo, text });
       return;
     } catch (error) {
-      console.error("Resend notification failed:", error.message);
+      console.error("Resend notification failed:", {
+        message: error.message,
+        sender: resendFrom,
+        recipient,
+      });
       throw new Error("Email notification could not be sent.");
     }
   }
