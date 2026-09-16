@@ -6,7 +6,7 @@ import logo from "../../../../assets/Logo.jpg";
 const links = [
   ["About", "/about"],
   ["Play", "/play"],
-  ["Dining", "/dining"],
+  ["Our Services", "/services"],
   ["Events", "/events"],
   ["Contact", "/contact"],
 ];

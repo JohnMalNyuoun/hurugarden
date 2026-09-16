@@ -60,35 +60,6 @@ jobs:
         if: ${{ github.event_name == 'push' && env.RENDER_HOOK != '' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl --fail --silent --show-error --retry 3 "$RENDER_HOOK"
 
-  notify_success:
-    needs: [deploy]
-    runs-on: ubuntu-latest
-    env:
-      DISCORD_URL: ${{ secrets.DISCORD_WEBHOOK }}
-    steps:
-      - name: Notify Deployment Success
-        if: ${{ success() && github.event_name == 'push' && env.DISCORD_URL != '' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
-        run: |
-          curl -H "Content-Type: application/json" \
-          -X POST \
-          -d '{"content": "Successfully deployed custom pipeline app to Render!"}' \
-          "$DISCORD_URL"
-
-  notify_failure:
-    needs: [backend_check, frontend_check, build_and_test, deploy]
-    if: ${{ always() && contains(needs.*.result, 'failure') }}
-    runs-on: ubuntu-latest
-    env:
-      DISCORD_URL: ${{ secrets.DISCORD_WEBHOOK }}
-    steps:
-      - name: Notify Build Failure
-        if: ${{ env.DISCORD_URL != '' }}
-        run: |
-          curl -H "Content-Type: application/json" \
-          -X POST \
-          -d '{"content": "Pipeline failed! Commit: ${{ github.sha }} by ${{ github.actor }}"}' \
-          "$DISCORD_URL"
-
   tag_release:
     needs: [deploy]
     runs-on: ubuntu-latest
