@@ -30,7 +30,7 @@ app.use((err, _req, res, _next) => {
 });
 app.listen(port, async () => {
   console.log(`Huru Garden API listening on port ${port}`);
-  console.log("SMTP configuration:", getMailerStatus());
+  console.log("Email configuration:", getMailerStatus());
   if (getMailerStatus().configured) {
     try {
       await verifyMailer();
