@@ -13,6 +13,14 @@ const recipient = process.env.CONTACT_EMAIL || process.env.SMTP_USER;
 const resendFrom =
   process.env.EMAIL_FROM || "Huru Garden <onboarding@resend.dev>";
 
+class EmailDeliveryError extends Error {
+  constructor(message, details = {}) {
+    super(message);
+    this.name = "EmailDeliveryError";
+    this.details = details;
+  }
+}
+
 const transporter =
   emailProvider === "resend" || !hasSmtp
     ? null
@@ -85,9 +93,10 @@ async function sendWithResend({ subject, replyTo, text }) {
   });
   if (!response.ok) {
     const details = await response.text();
-    throw new Error(
-      `Resend email failed (${response.status}): ${details.slice(0, 500)}`,
-    );
+    throw new EmailDeliveryError("Resend rejected the email.", {
+      status: response.status,
+      response: details.slice(0, 500),
+    });
   }
 }
 
@@ -102,10 +111,14 @@ export async function sendNotification({ subject, replyTo, text }) {
     } catch (error) {
       console.error("Resend notification failed:", {
         message: error.message,
+        details: error.details,
         sender: resendFrom,
         recipient,
       });
-      throw new Error("Email notification could not be sent.");
+      throw new EmailDeliveryError("Email notification could not be sent.", {
+        provider: "resend",
+        status: error.details?.status,
+      });
     }
   }
 
@@ -131,6 +144,9 @@ export async function sendNotification({ subject, replyTo, text }) {
       code: error.code,
       responseCode: error.responseCode,
     });
-    throw new Error("Email notification could not be sent.");
+    throw new EmailDeliveryError("Email notification could not be sent.", {
+      provider: "smtp",
+      code: error.code,
+    });
   }
 }

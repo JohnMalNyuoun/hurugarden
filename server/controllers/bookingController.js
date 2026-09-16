@@ -12,12 +12,10 @@ export async function createBooking(req, res) {
       text: JSON.stringify(req.body, null, 2),
     });
   } catch (error) {
-    console.error(error);
-    return res
-      .status(503)
-      .json({
-        message: "Booking received, but email delivery is unavailable.",
-      });
+    console.error("Booking email delivery failed:", error);
+    return res.status(503).json({
+      message: "Booking received, but email delivery is unavailable.",
+    });
   }
   res.status(201).json({ message: "Booking enquiry received." });
 }

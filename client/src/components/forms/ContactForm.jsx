@@ -12,8 +12,11 @@ export default function ContactForm() {
         Object.fromEntries(new FormData(event.currentTarget)),
       );
       setSent(true);
-    } catch {
-      setError("We could not send your message. Please try again shortly.");
+    } catch (requestError) {
+      setError(
+        requestError.response?.data?.message ||
+          "We could not send your message. Please try again shortly.",
+      );
     }
   };
   return sent ? (

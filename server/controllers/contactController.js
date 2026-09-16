@@ -12,12 +12,11 @@ export async function createContact(req, res) {
       text: message,
     });
   } catch (error) {
-    console.error(error);
-    return res
-      .status(503)
-      .json({
-        message: "Message received, but email delivery is unavailable.",
-      });
+    console.error("Contact email delivery failed:", error);
+    return res.status(503).json({
+      message:
+        "Your message could not be delivered right now. Please try again later.",
+    });
   }
   res.status(201).json({ message: "Message received." });
 }
