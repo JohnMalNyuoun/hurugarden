@@ -3,20 +3,21 @@ import Button from "../ui/Button";
 import { submitContact } from "../../services/api";
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
   const handle = async (event) => {
     event.preventDefault();
+    setError("");
     try {
       await submitContact(
         Object.fromEntries(new FormData(event.currentTarget)),
       );
       setSent(true);
     } catch {
-      /* Keep the form usable if the API is offline. */ setSent(true);
+      setError("We could not send your message. Please try again shortly.");
     }
   };
   return sent ? (
     <div className="form-success">
-     
       <h3>Message received.</h3>
       <p>We will write back as soon as we can.</p>
     </div>
@@ -45,6 +46,7 @@ export default function ContactForm() {
           placeholder="What is on your mind?"
         />
       </label>
+      {error && <p className="form-error">{error}</p>}
       <Button type="submit">Send message</Button>
     </form>
   );
