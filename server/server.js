@@ -34,9 +34,9 @@ app.listen(port, async () => {
   if (getMailerStatus().configured) {
     try {
       await verifyMailer();
-      console.log("SMTP connection verified.");
+      console.log("Email provider verified.");
     } catch (error) {
-      console.error("SMTP connection verification failed:", {
+      console.error("Email provider verification failed:", {
         message: error.message,
         code: error.code,
         responseCode: error.responseCode,
