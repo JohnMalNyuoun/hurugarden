@@ -26,7 +26,7 @@ const facilityServices = [
     rateValue: 7000,
     pricingOptions: [
       { label: "Half Day", rate: 7000, allowMultiple: false },
-      { label: "Full Day", rate: 10000, allowMultiple: true, maxUnits: 2 },
+      { label: "Full Day", rate: 10000, allowMultiple: true, maxUnits: 7 },
     ],
     description:
       "Chairs, tables, electricity, projector, flip charts, internet, and on-site support.",
