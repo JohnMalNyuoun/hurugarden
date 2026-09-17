@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "../../../../assets/Logo.jpg";
@@ -11,7 +11,6 @@ const links = [
   ["Contact", "/contact"],
 ];
 
-// Color & Style Constants based on Brand Guidelines
 const theme = {
   espresso: "#29130c",
   grey: "#e2dede",
@@ -23,6 +22,22 @@ const theme = {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setOpen(false); // Close mobile drawer if resized back to desktop
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <header
@@ -74,10 +89,10 @@ export default function Navbar() {
         </span>
       </Link>
 
-      {/* Desktop Navigation Links */}
+      {/* Desktop Navigation Links (Visible only on Desktop) */}
       <nav
         style={{
-          display: "flex",
+          display: isMobile ? "none" : "flex",
           alignItems: "center",
           gap: "2rem",
         }}
@@ -101,7 +116,7 @@ export default function Navbar() {
           </NavLink>
         ))}
 
-        {/* CTA Button */}
+        {/* Desktop Call to Action Button */}
         <Link
           to="/events"
           style={{
@@ -124,12 +139,16 @@ export default function Navbar() {
         </Link>
       </nav>
 
-      {/* Mobile Toggle Button */}
+      {/* Mobile Toggle Button (Visible only on Mobile) */}
       <button
-        aria-label="Toggle menu"
-        onClick={() => setOpen(!open)}
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded={open}
+        onClick={() => setOpen((prev) => !prev)}
         style={{
-          display: "none", // Set to "block" inside media query or mobile state
+          display: isMobile ? "flex" : "none",
+          alignItems: "center",
+          justifyContent: "center",
           background: "none",
           border: "none",
           color: theme.espresso,
@@ -137,11 +156,11 @@ export default function Navbar() {
           padding: "0.5rem",
         }}
       >
-        {open ? <X /> : <Menu />}
+        {open ? <X size={28} /> : <Menu size={28} />}
       </button>
 
-      {/* Mobile Menu Drawer */}
-      {open && (
+      {/* Mobile Drawer (Visible when open on Mobile) */}
+      {isMobile && open && (
         <nav
           style={{
             position: "absolute",
@@ -154,7 +173,7 @@ export default function Navbar() {
             padding: "1.5rem 2rem",
             backgroundColor: theme.grey,
             borderBottom: `1px solid rgba(41, 19, 12, 0.1)`,
-            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.05)",
+            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
           }}
         >
           {links.map(([label, path]) => (

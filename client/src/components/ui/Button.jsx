@@ -5,6 +5,7 @@ export default function Button({
   variant = "primary",
   type = "button",
   onClick,
+  disabled = false,
 }) {
   const className = `button button-${variant}`;
   return to ? (
@@ -13,7 +14,12 @@ export default function Button({
       <span></span>
     </Link>
   ) : (
-    <button className={className} type={type} onClick={onClick}>
+    <button
+      className={className}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
       <span></span>
     </button>

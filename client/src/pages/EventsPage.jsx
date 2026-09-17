@@ -23,12 +23,12 @@ export default function EventsPage() {
           <i>of it.</i>
         </h1>
         <p>
-          Birthday tables, team days, family catch-ups, and everything worth
+          Birthday tables, team days, family catchups, and everything worth
           gathering for.
         </p>
       </section>
 
-      <section className="event-layout section-pad">
+      <section className="event-layout event-layout-stacked section-pad">
         <div>
           <p className="eyebrow">Host at Huru</p>
           <h2>
@@ -45,7 +45,7 @@ export default function EventsPage() {
               <b>10–80</b> guests
             </span>
             <span>
-              <b>Tue–Sun</b> available
+              <b>Monday–Sunday</b> available
             </span>
             <span>
               <b>On site</b> catering

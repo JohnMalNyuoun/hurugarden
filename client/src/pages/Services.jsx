@@ -1,9 +1,11 @@
-import React from "react";
+import { useState } from "react";
 import Button from "../components/ui/Button";
+import BookingPaymentModal from "../components/forms/BookingPaymentModal";
 import meetimg from "../../../assets/hurumeeting1.jpg";
 import meet2img from "../../../assets/hurumeeting2.jpg";
 import hurutrainingimg from "../../../assets/hurutraining.jpg";
 import huruchill1img from "../../../assets/huruchill1.jpg";
+import cafeteriaImg from "../../../assets/762372387_122119643931272215_4697147077892752819_n.jpg";
 
 // Brand Identity Design Tokens
 const theme = {
@@ -21,6 +23,11 @@ const facilityServices = [
     title: "Huru Garden Hall",
     capacity: "Up to 100 people",
     pricing: "Kes 7,000 (Half Day) / Kes 10,000 (Full Day)",
+    rateValue: 7000,
+    pricingOptions: [
+      { label: "Half Day", rate: 7000, allowMultiple: false },
+      { label: "Full Day", rate: 10000, allowMultiple: true, maxUnits: 2 },
+    ],
     description:
       "Chairs, tables, electricity, projector, flip charts, internet, and on-site support.",
     image: meetimg,
@@ -29,6 +36,7 @@ const facilityServices = [
     title: "Full Board Package",
     capacity: "Per Person",
     pricing: "Kes 2,500 (Full Day)",
+    rateValue: 2500,
     description:
       "Breakfast, lunch, evening tea/coffee, snacks, water, and soda.",
     image: hurutrainingimg,
@@ -37,6 +45,7 @@ const facilityServices = [
     title: "Private Office Rental",
     capacity: "Private Space",
     pricing: "Ksh 10,000 / month",
+    rateValue: 10000,
     description:
       "Dedicated office desk, chair, and high-speed internet access.",
     image: meet2img,
@@ -45,6 +54,7 @@ const facilityServices = [
     title: "Freelance Workstation",
     capacity: "Shared Workspace",
     pricing: "Ksh 2,000 / month",
+    rateValue: 2000,
     description:
       "Shared workspace, continuous power, high-speed internet, and water access.",
     image: huruchill1img,
@@ -53,9 +63,10 @@ const facilityServices = [
     title: "Cafeteria Services",
     capacity: "Open Access",
     pricing: "Menu-based pricing",
+    rateValue: null,
     description:
       "Beverages, nyama choma, cold drinks, and assorted meals available on request.",
-    image: null,
+    image: cafeteriaImg,
   },
 ];
 
@@ -63,42 +74,56 @@ const outdoorActivities = [
   {
     activity: "Trampoline",
     rate: "Ksh 50",
+    rateValue: 50,
     duration: "3 hrs",
     target: "Children",
+    image: null,
   },
   {
     activity: "Water Slide",
     rate: "Ksh 100",
+    rateValue: 100,
     duration: "3 hrs",
     target: "Children",
+    image: null,
   },
   {
     activity: "Bouncing Castle",
     rate: "Ksh 50",
+    rateValue: 50,
     duration: "3 hrs",
     target: "Children",
+    image: null,
   },
   {
     activity: "Mini Car Ride",
     rate: "Ksh 100",
+    rateValue: 100,
     duration: "10 mins",
     target: "Children (Below 6 yrs)",
+    image: null,
   },
   {
     activity: "Swimming Pool",
     rate: "Ksh 400",
+    rateValue: 400,
     duration: "Full Day",
     target: "Adult",
+    image: null,
   },
   {
     activity: "Inflatable Swimming Pool",
     rate: "Ksh 300",
+    rateValue: 300,
     duration: "Full Day",
     target: "Children (Below 7 yrs)",
+    image: null,
   },
 ];
 
 export default function ServicesPage() {
+  const [paymentItem, setPaymentItem] = useState(null);
+
   return (
     <div
       style={{
@@ -146,7 +171,7 @@ export default function ServicesPage() {
             }}
           >
             Our Services & Facilities{" "}
-            <span style={{ color: theme.orange }}>✳</span>
+            <span style={{ color: theme.orange }}></span>
           </p>
 
           <h1
@@ -245,7 +270,7 @@ export default function ServicesPage() {
                 flexDirection: "column",
               }}
             >
-              {service.image && (
+              {service.image ? (
                 <div
                   style={{ height: "180px", width: "100%", overflow: "hidden" }}
                 >
@@ -258,6 +283,23 @@ export default function ServicesPage() {
                       objectFit: "cover",
                     }}
                   />
+                </div>
+              ) : (
+                <div
+                  style={{
+                    height: "180px",
+                    width: "100%",
+                    backgroundColor: "rgba(41, 19, 12, 0.06)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: theme.espresso,
+                    opacity: 0.7,
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  <span>[ {service.title} Image Placeholder ]</span>
                 </div>
               )}
               <div
@@ -315,17 +357,84 @@ export default function ServicesPage() {
                     {service.description}
                   </p>
                 </div>
-                <div
-                  style={{
-                    marginTop: "1.25rem",
-                    paddingTop: "0.75rem",
-                    borderTop: "1px solid rgba(0,0,0,0.05)",
-                    fontSize: "0.85rem",
-                    color: theme.espresso,
-                    opacity: 0.6,
-                  }}
-                >
-                  Capacity / Access: <strong>{service.capacity}</strong>
+
+                <div>
+                  <div
+                    style={{
+                      marginTop: "1.25rem",
+                      paddingTop: "0.75rem",
+                      marginBottom: "1.25rem",
+                      borderTop: "1px solid rgba(0,0,0,0.05)",
+                      fontSize: "0.85rem",
+                      color: theme.espresso,
+                      opacity: 0.6,
+                    }}
+                  >
+                    Capacity / Access: <strong>{service.capacity}</strong>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "0.6rem",
+                      marginTop: "1.25rem",
+                    }}
+                  >
+                    {service.title === "Cafeteria Services" && (
+                      <Button
+                        to="/cafeteria"
+                        style={{
+                          flex: 1,
+                          textAlign: "center",
+                          border: `1px solid ${theme.espresso}`,
+                          color: theme.espresso,
+                        }}
+                      >
+                        Explore Cafeteria
+                      </Button>
+                    )}
+                    <Button
+                      to={`/events?service=${encodeURIComponent(service.title)}`}
+                      style={{
+                        flex: 1,
+                        textAlign: "center",
+                        border: `1px solid ${theme.espresso}`,
+                        color: theme.espresso,
+                      }}
+                    >
+                      Book Event
+                    </Button>
+                    {service.rateValue ? (
+                      <button
+                        type="button"
+                        onClick={() => setPaymentItem(service)}
+                        style={{
+                          flex: 1,
+                          padding: "0.65rem",
+                          border: 0,
+                          borderRadius: "6px",
+                          backgroundColor: theme.orange,
+                          color: "#ffffff",
+                          fontWeight: 700,
+                          cursor: "pointer",
+                        }}
+                      >
+                        Book &amp; Pay Now
+                      </button>
+                    ) : (
+                      <Button
+                        to="/contact?service=Cafeteria%20Services"
+                        style={{
+                          flex: 1,
+                          textAlign: "center",
+                          backgroundColor: theme.orange,
+                          color: "#ffffff",
+                        }}
+                      >
+                        Request Menu
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -367,89 +476,157 @@ export default function ServicesPage() {
           </h2>
         </div>
 
-        {/* Recreation Rate Table */}
+        {/* Fun Activity Cards Grid */}
         <div
           style={{
-            backgroundColor: "#ffffff",
-            borderRadius: "16px",
-            overflow: "hidden",
-            boxShadow: "0 8px 24px rgba(41, 19, 12, 0.04)",
-            border: "1px solid rgba(41, 19, 12, 0.08)",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "2rem",
           }}
         >
-          <div style={{ overflowX: "auto" }}>
-            <table
+          {outdoorActivities.map((act) => (
+            <div
+              key={act.activity}
               style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                textAlign: "left",
-                fontSize: "0.95rem",
+                backgroundColor: "#ffffff",
+                borderRadius: "16px",
+                overflow: "hidden",
+                border: "1px solid rgba(41, 19, 12, 0.08)",
+                boxShadow: "0 8px 24px rgba(41, 19, 12, 0.04)",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
-              <thead>
-                <tr
-                  style={{
-                    backgroundColor: theme.espresso,
-                    color: theme.yellow,
-                    fontFamily: theme.fontHeading,
-                  }}
-                >
-                  <th style={{ padding: "1rem 1.5rem" }}>Activity</th>
-                  <th style={{ padding: "1rem 1.5rem" }}>Rate</th>
-                  <th style={{ padding: "1rem 1.5rem" }}>Duration</th>
-                  <th style={{ padding: "1rem 1.5rem" }}>Target Group</th>
-                </tr>
-              </thead>
-              <tbody>
-                {outdoorActivities.map((act, idx) => (
-                  <tr
-                    key={act.activity}
+              {/* Image / Placeholder Block */}
+              <div
+                style={{
+                  height: "180px",
+                  width: "100%",
+                  backgroundColor: "rgba(41, 19, 12, 0.06)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  color: theme.espresso,
+                  opacity: 0.7,
+                  fontSize: "0.9rem",
+                  fontWeight: 600,
+                }}
+              >
+                {act.image ? (
+                  <img
+                    src={act.image}
+                    alt={act.activity}
                     style={{
-                      borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
-                      backgroundColor: idx % 2 === 0 ? "#ffffff" : "#fbf9f9",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  <span>[ {act.activity} Image Placeholder ]</span>
+                )}
+              </div>
+
+              {/* Card Details Body */}
+              <div
+                style={{
+                  padding: "1.5rem",
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <h3
+                    style={{
+                      fontFamily: theme.fontHeading,
+                      fontSize: "1.25rem",
+                      color: theme.espresso,
+                      margin: "0 0 0.5rem 0",
                     }}
                   >
-                    <td
+                    {act.activity}
+                  </h3>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "baseline",
+                      gap: "0.5rem",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <span
                       style={{
-                        padding: "1rem 1.5rem",
-                        fontWeight: 700,
-                        color: theme.espresso,
-                      }}
-                    >
-                      {act.activity}
-                    </td>
-                    <td
-                      style={{
-                        padding: "1rem 1.5rem",
-                        color: theme.espresso,
-                        fontWeight: 700,
+                        fontSize: "1.5rem",
+                        fontWeight: 800,
+                        color: theme.orange,
                       }}
                     >
                       {act.rate}
-                    </td>
-                    <td
+                    </span>
+                    <span
                       style={{
-                        padding: "1rem 1.5rem",
+                        fontSize: "0.85rem",
                         color: theme.espresso,
-                        opacity: 0.8,
+                        opacity: 0.6,
                       }}
                     >
-                      {act.duration}
-                    </td>
-                    <td
-                      style={{
-                        padding: "1rem 1.5rem",
-                        color: theme.espresso,
-                        opacity: 0.8,
-                      }}
-                    >
-                      {act.target}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                      / {act.duration}
+                    </span>
+                  </div>
+
+                  <p
+                    style={{
+                      fontSize: "0.875rem",
+                      color: theme.espresso,
+                      opacity: 0.8,
+                      margin: "0 0 1.25rem 0",
+                    }}
+                  >
+                    <strong>Target Group:</strong> {act.target}
+                  </p>
+                </div>
+
+                <div style={{ display: "flex", gap: "0.6rem" }}>
+                  <Button
+                    to={`/events?activity=${encodeURIComponent(act.activity)}`}
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      border: `1px solid ${theme.espresso}`,
+                      color: theme.espresso,
+                    }}
+                  >
+                    Book Event
+                  </Button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPaymentItem({
+                        title: act.activity,
+                        rateValue: act.rateValue,
+                      })
+                    }
+                    style={{
+                      flex: 1,
+                      padding: "0.65rem",
+                      border: 0,
+                      borderRadius: "6px",
+                      backgroundColor: theme.orange,
+                      color: "#ffffff",
+                      fontWeight: 700,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Book & Pay Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Terms & Conditions Notice */}
@@ -457,6 +634,9 @@ export default function ServicesPage() {
           style={{
             marginTop: "3rem",
             padding: "2rem",
+            backgroundColor: "#ffffff",
+            borderRadius: "16px",
+            border: "1px solid rgba(41, 19, 12, 0.08)",
           }}
         >
           <h4
@@ -500,9 +680,15 @@ export default function ServicesPage() {
 
         {/* CTA Section */}
         <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
-          <Button to="/contact">Book a space or activity</Button>
+          <Button to="/events">Book a space or custom event</Button>
         </div>
       </section>
+      {paymentItem && (
+        <BookingPaymentModal
+          item={paymentItem}
+          onClose={() => setPaymentItem(null)}
+        />
+      )}
     </div>
   );
 }

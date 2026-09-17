@@ -506,6 +506,12 @@ h2 i {
 .contact-layout {
   background: var(--cream);
 }
+.event-layout-stacked {
+  display: block;
+}
+.event-layout-stacked > .booking-card {
+  margin-top: 48px;
+}
 .event-facts {
   display: flex;
   gap: 24px;

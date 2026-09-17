@@ -13,10 +13,37 @@ const theme = {
 };
 
 export default function AboutPage() {
+  const pillarCards = [
+    {
+      title: "Why we exist",
+      text: "Huru Garden exists to restore joy, safety, and structure to family life while generating sustainable income for long-term community development.",
+    },
+    {
+      title: "Who we serve",
+      text: "We serve refugee and host community children, families, youth, schools, and organizations seeking safe recreation, connection, and affordable gathering spaces.",
+    },
+    {
+      title: "What we stand for",
+      text: "We stand for dignity, safety, joy, and responsibility, ensuring every experience protects children, empowers families, and sustains community-led development.",
+    },
+    {
+      title: "What sets us apart",
+      text: "We uniquely combine structured play, emotional wellbeing, and income generation inside the camp, removing access barriers while reinvesting revenue locally.",
+    },
+    {
+      title: "How do we lead change",
+      text: "We lead change by transforming supervised recreation into a tool for wellbeing, responsibility, and economic participation within refugee-led community systems.",
+    },
+    {
+      title: "Where we are heading",
+      text: "We are building a trusted family recreation hub and scalable social enterprise model that strengthens infrastructure, income, and long-term community impact.",
+    },
+  ];
+
   return (
     <div style={{ backgroundColor: theme.grey, minHeight: "100vh", fontFamily: theme.fontBody }}>
       
-      {/* Hero Header Section with Image Background */}
+      {/* Hero Header Section */}
       <section
         style={{
           position: "relative",
@@ -32,15 +59,7 @@ export default function AboutPage() {
           overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            maxWidth: "1200px",
-            margin: "0 auto",
-            width: "100%",
-          }}
-        >
+        <div style={{ position: "relative", zIndex: 10, maxWidth: "1200px", margin: "0 auto", width: "100%" }}>
           <p
             style={{
               display: "inline-flex",
@@ -94,7 +113,7 @@ export default function AboutPage() {
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "5rem 2rem",
+          padding: "5rem 2rem 3rem 2rem",
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: "3rem",
@@ -109,7 +128,7 @@ export default function AboutPage() {
               fontSize: "0.875rem",
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              margin: "0 0 0.5rem 0",
+              margin: "0 0 0.5rem 0", 
             }}
           >
             A social enterprise
@@ -143,7 +162,7 @@ export default function AboutPage() {
           }}
         >
           <p style={{ margin: 0 }}>
-            Huru Garden is a community-centered hospitality space in Kakuma,
+            Huru Garden is a community, centered hospitality space in Kakuma,
             Kenya. We believe joy, safety, and opportunity are not extras; they
             are the foundation.
           </p>
@@ -155,6 +174,45 @@ export default function AboutPage() {
           <div style={{ marginTop: "0.5rem" }}>
             <Button to="/contact">Come say hello</Button>
           </div>
+        </div>
+      </section>
+
+      {/* Strategic Pillars Grid */}
+      <section style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 2rem 5rem 2rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "1.5rem",
+          }}
+        >
+          {pillarCards.map((card, idx) => (
+            <div
+              key={idx}
+              style={{
+                backgroundColor: "#ffffff",
+                padding: "2rem",
+                borderRadius: "8px",
+                
+                boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: theme.fontHeading,
+                  fontSize: "1.25rem",
+                  color: theme.espresso,
+                  marginTop: 0,
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {card.title}
+              </h3>
+              <p style={{ color: theme.espresso, lineHeight: 1.6, margin: 0 }}>
+                {card.text}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -180,47 +238,29 @@ export default function AboutPage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <strong
-              style={{
-                fontFamily: theme.fontHeading,
-                color: theme.yellow,
-                fontSize: "1.75rem",
-              }}
-            >
+            <strong style={{ fontFamily: theme.fontHeading, color: theme.yellow, fontSize: "1.75rem" }}>
               01
             </strong>
             <span style={{ fontSize: "1rem", fontWeight: 500 }}>
-              Play creates possibility[cite: 1].
+              Play creates possibility.
             </span>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <strong
-              style={{
-                fontFamily: theme.fontHeading,
-                color: theme.yellow,
-                fontSize: "1.75rem",
-              }}
-            >
+            <strong style={{ fontFamily: theme.fontHeading, color: theme.yellow, fontSize: "1.75rem" }}>
               02
             </strong>
             <span style={{ fontSize: "1rem", fontWeight: 500 }}>
-              Food brings us home[cite: 1].
+              Food brings us home.
             </span>
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <strong
-              style={{
-                fontFamily: theme.fontHeading,
-                color: theme.yellow,
-                fontSize: "1.75rem",
-              }}
-            >
+            <strong style={{ fontFamily: theme.fontHeading, color: theme.yellow, fontSize: "1.75rem" }}>
               03
             </strong>
             <span style={{ fontSize: "1rem", fontWeight: 500 }}>
-              Community is the point[cite: 1].
+              Community is the point.
             </span>
           </div>
         </div>
