@@ -1,13 +1,10 @@
-import { useState } from "react";
 import Button from "../components/ui/Button";
-import BookingPaymentModal from "../components/forms/BookingPaymentModal";
 import meetimg from "../../../assets/hurumeeting1.jpg";
 import meet2img from "../../../assets/hurumeeting2.jpg";
 import hurutrainingimg from "../../../assets/hurutraining.jpg";
 import huruchill1img from "../../../assets/huruchill1.jpg";
 import cafeteriaImg from "../../../assets/762372387_122119643931272215_4697147077892752819_n.jpg";
 
-// Brand Identity Design Tokens
 const theme = {
   espresso: "#29130c",
   grey: "#e2dede",
@@ -17,17 +14,11 @@ const theme = {
   fontBody: "'Satoshi', system-ui, -apple-system, sans-serif",
 };
 
-// Rate Card Data Extraction
 const facilityServices = [
   {
     title: "Huru Garden Hall",
     capacity: "Up to 100 people",
-    pricing: "Kes 7,000 (Half Day) / Kes 10,000 (Full Day)",
-    rateValue: 7000,
-    pricingOptions: [
-      { label: "Half Day", rate: 7000, allowMultiple: false },
-      { label: "Full Day", rate: 10000, allowMultiple: true, maxUnits: 7 },
-    ],
+    pricing: "Half Day / Full Day bookings",
     description:
       "Chairs, tables, electricity, projector, flip charts, internet, and on-site support.",
     image: meetimg,
@@ -35,8 +26,7 @@ const facilityServices = [
   {
     title: "Full Board Package",
     capacity: "Per Person",
-    pricing: "Kes 2,500 (Full Day)",
-    rateValue: 2500,
+    pricing: "Flexible package pricing",
     description:
       "Breakfast, lunch, evening tea/coffee, snacks, water, and soda.",
     image: hurutrainingimg,
@@ -44,8 +34,7 @@ const facilityServices = [
   {
     title: "Private Office Rental",
     capacity: "Private Space",
-    pricing: "Ksh 10,000 / month",
-    rateValue: 10000,
+    pricing: "Monthly workspace access",
     description:
       "Dedicated office desk, chair, and high-speed internet access.",
     image: meet2img,
@@ -53,8 +42,7 @@ const facilityServices = [
   {
     title: "Freelance Workstation",
     capacity: "Shared Workspace",
-    pricing: "Ksh 2,000 / month",
-    rateValue: 2000,
+    pricing: "Monthly workstation access",
     description:
       "Shared workspace, continuous power, high-speed internet, and water access.",
     image: huruchill1img,
@@ -63,7 +51,6 @@ const facilityServices = [
     title: "Cafeteria Services",
     capacity: "Open Access",
     pricing: "Menu-based pricing",
-    rateValue: null,
     description:
       "Beverages, nyama choma, cold drinks, and assorted meals available on request.",
     image: cafeteriaImg,
@@ -73,48 +60,36 @@ const facilityServices = [
 const outdoorActivities = [
   {
     activity: "Trampoline",
-    rate: "Ksh 50",
-    rateValue: 50,
     duration: "3 hrs",
     target: "Children",
     image: null,
   },
   {
     activity: "Water Slide",
-    rate: "Ksh 100",
-    rateValue: 100,
     duration: "3 hrs",
     target: "Children",
     image: null,
   },
   {
     activity: "Bouncing Castle",
-    rate: "Ksh 50",
-    rateValue: 50,
     duration: "3 hrs",
     target: "Children",
     image: null,
   },
   {
     activity: "Mini Car Ride",
-    rate: "Ksh 100",
-    rateValue: 100,
     duration: "10 mins",
     target: "Children (Below 6 yrs)",
     image: null,
   },
   {
     activity: "Swimming Pool",
-    rate: "Ksh 400",
-    rateValue: 400,
     duration: "Full Day",
     target: "Adult",
     image: null,
   },
   {
     activity: "Inflatable Swimming Pool",
-    rate: "Ksh 300",
-    rateValue: 300,
     duration: "Full Day",
     target: "Children (Below 7 yrs)",
     image: null,
@@ -122,8 +97,6 @@ const outdoorActivities = [
 ];
 
 export default function ServicesPage() {
-  const [paymentItem, setPaymentItem] = useState(null);
-
   return (
     <div
       style={{
@@ -132,7 +105,6 @@ export default function ServicesPage() {
         fontFamily: theme.fontBody,
       }}
     >
-      {/* Hero Header Section */}
       <section
         style={{
           position: "relative",
@@ -170,8 +142,7 @@ export default function ServicesPage() {
               margin: "0 0 0.5rem 0",
             }}
           >
-            Our Services & Facilities{" "}
-            <span style={{ color: theme.orange }}></span>
+            Our Services & Facilities
           </p>
 
           <h1
@@ -207,7 +178,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Facilities & Workspaces Section */}
       <section
         style={{
           maxWidth: "1200px",
@@ -249,7 +219,6 @@ export default function ServicesPage() {
           </h2>
         </div>
 
-        {/* Services List Grid */}
         <div
           style={{
             display: "grid",
@@ -380,7 +349,7 @@ export default function ServicesPage() {
                       marginTop: "1.25rem",
                     }}
                   >
-                    {service.title === "Cafeteria Services" && (
+                    {service.title === "Cafeteria Services" ? (
                       <Button
                         to="/cafeteria"
                         style={{
@@ -392,46 +361,17 @@ export default function ServicesPage() {
                       >
                         Explore Cafeteria
                       </Button>
-                    )}
-                    <Button
-                      to={`/events?service=${encodeURIComponent(service.title)}`}
-                      style={{
-                        flex: 1,
-                        textAlign: "center",
-                        border: `1px solid ${theme.espresso}`,
-                        color: theme.espresso,
-                      }}
-                    >
-                      Book Event
-                    </Button>
-                    {service.rateValue ? (
-                      <button
-                        type="button"
-                        onClick={() => setPaymentItem(service)}
-                        style={{
-                          flex: 1,
-                          padding: "0.65rem",
-                          border: 0,
-                          borderRadius: "6px",
-                          backgroundColor: theme.orange,
-                          color: "#ffffff",
-                          fontWeight: 700,
-                          cursor: "pointer",
-                        }}
-                      >
-                        Book &amp; Pay Now
-                      </button>
                     ) : (
                       <Button
-                        to="/contact?service=Cafeteria%20Services"
+                        to={`/events?service=${encodeURIComponent(service.title)}`}
                         style={{
                           flex: 1,
                           textAlign: "center",
-                          backgroundColor: theme.orange,
-                          color: "#ffffff",
+                          border: `1px solid ${theme.espresso}`,
+                          color: theme.espresso,
                         }}
                       >
-                        Request Menu
+                        Book Event
                       </Button>
                     )}
                   </div>
@@ -442,7 +382,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Outdoor Recreation Activities Section */}
       <section
         style={{
           maxWidth: "1200px",
@@ -476,7 +415,6 @@ export default function ServicesPage() {
           </h2>
         </div>
 
-        {/* Fun Activity Cards Grid */}
         <div
           style={{
             display: "grid",
@@ -497,7 +435,6 @@ export default function ServicesPage() {
                 flexDirection: "column",
               }}
             >
-              {/* Image / Placeholder Block */}
               <div
                 style={{
                   height: "180px",
@@ -528,7 +465,6 @@ export default function ServicesPage() {
                 )}
               </div>
 
-              {/* Card Details Body */}
               <div
                 style={{
                   padding: "1.5rem",
@@ -560,21 +496,12 @@ export default function ServicesPage() {
                   >
                     <span
                       style={{
-                        fontSize: "1.5rem",
-                        fontWeight: 800,
+                        fontSize: "0.9rem",
+                        fontWeight: 700,
                         color: theme.orange,
                       }}
                     >
-                      {act.rate}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "0.85rem",
-                        color: theme.espresso,
-                        opacity: 0.6,
-                      }}
-                    >
-                      / {act.duration}
+                      {act.duration}
                     </span>
                   </div>
 
@@ -602,34 +529,12 @@ export default function ServicesPage() {
                   >
                     Book Event
                   </Button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setPaymentItem({
-                        title: act.activity,
-                        rateValue: act.rateValue,
-                      })
-                    }
-                    style={{
-                      flex: 1,
-                      padding: "0.65rem",
-                      border: 0,
-                      borderRadius: "6px",
-                      backgroundColor: theme.orange,
-                      color: "#ffffff",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                    }}
-                  >
-                    Book & Pay Now
-                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Terms & Conditions Notice */}
         <div
           style={{
             marginTop: "3rem",
@@ -659,36 +564,24 @@ export default function ServicesPage() {
             }}
           >
             <li>
-              All bookings are confirmed upon advance payment or official
-              commitment.
+              Bookings are confirmed after we receive your request and details.
             </li>
             <li>
-              <strong>Payment Terms:</strong> 50% of payment required before
-              service delivery unless otherwise agreed.
-            </li>
-            <li>Payments are non-refundable once services are rendered.</li>
-            <li>
-              Cancellations made at least 24 hours prior may be rescheduled;
-              same-day cancellations may incur charges.
+              Cancellations made at least 24 hours prior may be rescheduled.
             </li>
             <li>
-              Safety measures are in place; all outdoor activities are
-              supervised to ensure safety.
+              Same-day cancellations may incur charges depending on the booking.
+            </li>
+            <li>
+              Safety measures are in place; outdoor activities are supervised.
             </li>
           </ul>
         </div>
 
-        {/* CTA Section */}
         <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
           <Button to="/events">Book a space or custom event</Button>
         </div>
       </section>
-      {paymentItem && (
-        <BookingPaymentModal
-          item={paymentItem}
-          onClose={() => setPaymentItem(null)}
-        />
-      )}
     </div>
   );
 }

@@ -15,7 +15,8 @@ const styles = {
     width: "100%",
     margin: "0 auto",
     boxSizing: "border-box",
-    fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontFamily:
+      "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
   },
   heading: {
     marginTop: 0,
@@ -194,7 +195,11 @@ export default function BookingForm() {
             Phone Number: <strong>{formData.phone}</strong>
           </p>
         </div>
-        <Button type="button" onClick={resetForm} style={{ width: "100%", padding: "0.85rem" }}>
+        <Button
+          type="button"
+          onClick={resetForm}
+          style={{ width: "100%", padding: "0.85rem" }}
+        >
           Book Another Reservation
         </Button>
       </div>
@@ -237,7 +242,7 @@ export default function BookingForm() {
 
         <div style={styles.row}>
           <label style={styles.label}>
-            Phone Number (M-Pesa)
+            Phone Number
             <input
               name="phone"
               type="tel"
@@ -349,7 +354,11 @@ export default function BookingForm() {
 
         {error && <p style={styles.error}>{error}</p>}
 
-        <Button type="submit" disabled={loading} style={{ width: "100%", marginTop: "0.5rem", padding: "0.85rem" }}>
+        <Button
+          type="submit"
+          disabled={loading}
+          style={{ width: "100%", marginTop: "0.5rem", padding: "0.85rem" }}
+        >
           {loading ? "Sending Request..." : "Submit Request"}
         </Button>
       </form>

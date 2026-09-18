@@ -24,16 +24,16 @@ export default function HighlightsGrid() {
         <Link to="/play">
           <span>01</span>
           <strong>Come play</strong>
-          <ArrowUpRight /> 
+          <ArrowUpRight />
         </Link>
         <Link to="/services">
           <span>02</span>
-          <strong>Come hungry</strong>
+          <strong>See our services</strong>
           <ArrowUpRight />
         </Link>
         <Link to="/events">
           <span>03</span>
-          <strong>Come together</strong>
+          <strong>Book your day</strong>
           <ArrowUpRight />
         </Link>
       </div>

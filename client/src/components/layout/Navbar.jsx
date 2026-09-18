@@ -23,7 +23,7 @@ const theme = {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false,
   );
 
   useEffect(() => {

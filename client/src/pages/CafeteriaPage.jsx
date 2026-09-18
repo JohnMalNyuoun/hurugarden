@@ -5,10 +5,7 @@ import eventImg from "../../../assets/huruchill.jpg";
 
 const theme = {
   espresso: "#29130c",
-  orange: "#f26622",
-  yellow: "#f7f195",
-  cream: "#f8f5ef",
-  grey: "#e2dede",
+  orange: "#f26622", 
 };
 
 const menuSections = [

@@ -5,7 +5,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
-import mpesaRoutes from "./routes/mpesaRoutes.js";
 import { getMailerStatus, verifyMailer } from "./utils/mailer.js";
 
 const app = express();
@@ -21,7 +20,6 @@ app.get("/api/health", (_req, res) =>
 );
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/contact", contactRoutes);
-app.use("/api/mpesa", mpesaRoutes);
 app.use(express.static(clientDistPath));
 app.get("*", (_req, res) =>
   res.sendFile(path.join(clientDistPath, "index.html")),
