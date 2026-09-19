@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../ui/Button";
 import heroImg from "../../../../assets/hurugrandopen.jpg";
 
-
 const theme = {
   espresso: "#29130c",
   grey: "#e2dede",
@@ -65,7 +64,7 @@ export default function HeroSection() {
             margin: 0,
           }}
         >
-          Welcome to Huru Garden <span style={{ color: theme.orange }}></span>
+          Welcome to Huru Garden
         </p>
 
         <h1
@@ -109,8 +108,8 @@ export default function HeroSection() {
           }}
         >
           <Button to="/events">Plan your gathering</Button>
-          <Button to="/about" variant="ghost">
-            Discover Huru <span style={{ marginLeft: "0.25rem" }}>↓</span>
+          <Button to="/cafeteria" variant="ghost">
+            Explore Cafeteria
           </Button>
         </div>
       </div>
@@ -120,7 +119,7 @@ export default function HeroSection() {
         style={{
           position: "relative",
           zIndex: 10,
-          display: "none", // Rendered on larger desktop viewports
+          display: "none",
           alignSelf: "flex-end",
           padding: "1.5rem",
           backgroundColor: theme.espresso,
@@ -134,7 +133,7 @@ export default function HeroSection() {
           fontWeight: 700,
           lineHeight: 1.3,
           letterSpacing: "0.05em",
-          border: `2px border ${theme.orange}`,
+          border: `2px solid ${theme.orange}`,
           boxShadow: "0 10px 25px rgba(41, 19, 12, 0.15)",
           justifyContent: "center",
           alignItems: "center",
@@ -164,7 +163,7 @@ export default function HeroSection() {
           opacity: 0.8,
         }}
       >
-        Scroll to explore <span style={{ color: theme.orange }}>↓</span>
+        Scroll to explore <span style={{ color: theme.orange }}></span>
       </div>
     </section>
   );

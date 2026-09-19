@@ -135,7 +135,7 @@ export default function Navbar() {
           }}
         >
           Plan your gathering{" "}
-          <span style={{ fontSize: "1.1rem", lineHeight: 1 }}>↗</span>
+          <span style={{ fontSize: "1.1rem", lineHeight: 1 }}></span>
         </Link>
       </nav>
 
@@ -209,7 +209,7 @@ export default function Navbar() {
               marginTop: "0.5rem",
             }}
           >
-            Plan your gathering <span>↗</span>
+            Plan your gathering
           </Link>
         </nav>
       )}

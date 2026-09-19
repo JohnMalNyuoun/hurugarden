@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Card from "../ui/Card";
+import { Link } from "react-router-dom";
 import playImg from "../../../../assets/huruchill1.jpg";
 import YogaImg from "../../../../assets/yoga.jpg";
 import hallimg from "../../../../assets/hall.png";
 import hurueventimg from "../../../../assets/huruevent1.jpg";
+import nyamaimg from "../../../../assets/nyamachoma.jpg";
 
 const theme = {
   espresso: "#29130c",
@@ -16,7 +17,7 @@ const theme = {
 
 export default function ImpactPillars() {
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false,
   );
 
   useEffect(() => {
@@ -87,7 +88,9 @@ export default function ImpactPillars() {
               }}
             />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          >
             <h2
               style={{
                 fontFamily: theme.fontHeading,
@@ -149,8 +152,8 @@ export default function ImpactPillars() {
             <p style={{ lineHeight: 1.7, margin: 0, color: theme.espresso }}>
               Get ready to experience a space that nurtures your mind, body, and
               soul. We prioritize wellness through guided yoga sessions, outdoor
-              mindfulness practices, and serene environments where you can relax,
-              rejuvenate, and reconnect with nature.
+              mindfulness practices, and serene environments where you can
+              relax, rejuvenate, and reconnect with nature.
             </p>
           </div>
           <div
@@ -203,7 +206,9 @@ export default function ImpactPillars() {
               }}
             />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          >
             <h2
               style={{
                 fontFamily: theme.fontHeading,
@@ -264,9 +269,10 @@ export default function ImpactPillars() {
             </h2>
             <p style={{ lineHeight: 1.7, margin: 0, color: theme.espresso }}>
               Designed for focus and collaboration, our indoor hall provides a
-              flexible space for workshops, corporate meetings, private functions,
-              and educational seminars. Equipped with reliable seating and layout
-              flexibility, it adapts seamlessly to your group's needs.
+              flexible space for workshops, corporate meetings, private
+              functions, and educational seminars. Equipped with reliable
+              seating and layout flexibility, it adapts seamlessly to your
+              group's needs.
             </p>
           </div>
           <div
@@ -292,28 +298,90 @@ export default function ImpactPillars() {
         </div>
       </div>
 
-      {/* Pillars Grid */}
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "1.5rem",
-        }}
-      >
-        <Card number="01" icon="" title="Play with purpose">
-          A thoughtful play space where children can build confidence,
-          cooperation, and emotional regulation in safe environments.
-        </Card>
-        <Card number="02" icon="" title="Gather generously">
-          A warm setting for celebrations, meetings, and everyday social
-          connection in Kakuma.
-        </Card>
-        <Card number="03" icon="" title="Grow together">
-          A social enterprise creating local employment and circulating
-          resources to sustain community development.
-        </Card>
+      {/* Cafeteria Banner Link - Flat cover image with nyamaimg */}
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <Link
+          to="/cafeteria"
+          style={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: isMobile ? "2rem 1.5rem" : "3rem 3.5rem",
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url(${nyamaimg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            color: "#ffffff",
+            
+            textDecoration: "none",
+            gap: "2rem",
+            transition: "transform 0.2s ease",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.75rem",
+              textAlign: isMobile ? "center" : "left",
+            }}
+          >
+            <span
+              style={{
+                color: theme.yellow,
+                fontSize: "0.875rem",
+                fontWeight: 700,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+              }}
+            >
+              Huru Cafeteria & Dining
+            </span>
+            <h3
+              style={{
+                fontFamily: theme.fontHeading,
+                fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                margin: 0,
+                color: "#ffffff",
+                lineHeight: 1.2,
+              }}
+            >
+              Pull up a chair. Taste the warmth.
+            </h3>
+            <p
+              style={{
+                fontSize: "1.05rem",
+                lineHeight: 1.6,
+                color: "#ffffff",
+                opacity: 0.95,
+                margin: 0,
+                maxWidth: "600px",
+              }}
+            >
+              Whether you need fresh local meals, hot coffee, refreshing cold drinks,
+              or a welcoming space to share stories with friends, our kitchen is always warm and ready for you.
+            </p>
+          </div>
+
+          <div
+            style={{
+              backgroundColor: theme.orange,
+              color: "#ffffff",
+              padding: "1rem 2rem",
+              borderRadius: "50px",
+              fontWeight: 700,
+              fontSize: "1rem",
+              letterSpacing: "0.05em",
+              whiteSpace: "nowrap",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              flexShrink: 0,
+            }}
+          >
+            Explore Menu & Dining <span></span>
+          </div>
+        </Link>
       </div>
     </section>
   );

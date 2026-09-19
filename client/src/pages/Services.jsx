@@ -1,9 +1,17 @@
+import React from "react";
 import Button from "../components/ui/Button";
 import meetimg from "../../../assets/hurumeeting1.jpg";
 import meet2img from "../../../assets/hurumeeting2.jpg";
 import hurutrainingimg from "../../../assets/hurutraining.jpg";
 import huruchill1img from "../../../assets/huruchill1.jpg";
 import cafeteriaImg from "../../../assets/762372387_122119643931272215_4697147077892752819_n.jpg";
+import pool from "../../../assets/pool.jpg";
+import car from "../../../assets/carforkid.jpg";
+import kidscar from "../../../assets/makekidhappy.jpg";
+import bouncingimag from "../../../assets/bouncing.jpg";
+import childrenswim from "../../../assets/childrenpool.jpg";
+import trimpoline from "../../../assets/triopoline.jpg";
+import slideimg from "../../../assets/slide.jpg";
 
 const theme = {
   espresso: "#29130c",
@@ -15,6 +23,14 @@ const theme = {
 };
 
 const facilityServices = [
+  {
+    title: "Cafeteria Services",
+    capacity: "Open Access",
+    pricing: "Menu-based pricing",
+    description:
+      "The heart of Huru Garden: beverages, nyama choma, cold drinks, and assorted meals served for meetings, workdays, families, and visitors.",
+    image: cafeteriaImg,
+  },
   {
     title: "Huru Garden Hall",
     capacity: "Up to 100 people",
@@ -47,14 +63,6 @@ const facilityServices = [
       "Shared workspace, continuous power, high-speed internet, and water access.",
     image: huruchill1img,
   },
-  {
-    title: "Cafeteria Services",
-    capacity: "Open Access",
-    pricing: "Menu-based pricing",
-    description:
-      "Beverages, nyama choma, cold drinks, and assorted meals available on request.",
-    image: cafeteriaImg,
-  },
 ];
 
 const outdoorActivities = [
@@ -62,37 +70,37 @@ const outdoorActivities = [
     activity: "Trampoline",
     duration: "3 hrs",
     target: "Children",
-    image: null,
+    image: kidscar,
   },
   {
     activity: "Water Slide",
     duration: "3 hrs",
     target: "Children",
-    image: null,
+    image: slideimg,
   },
   {
     activity: "Bouncing Castle",
     duration: "3 hrs",
     target: "Children",
-    image: null,
+    image: bouncingimag,
   },
   {
-    activity: "Mini Car Ride",
-    duration: "10 mins",
-    target: "Children (Below 6 yrs)",
-    image: null,
+    activity: "Bouncing",
+    duration: "3 hrs",
+    target: "Children",
+    image: trimpoline,
   },
   {
     activity: "Swimming Pool",
     duration: "Full Day",
     target: "Adult",
-    image: null,
+    image: pool,
   },
   {
     activity: "Inflatable Swimming Pool",
     duration: "Full Day",
     target: "Children (Below 7 yrs)",
-    image: null,
+    image: childrenswim,
   },
 ];
 
@@ -168,13 +176,27 @@ export default function ServicesPage() {
               lineHeight: 1.6,
               color: theme.grey,
               maxWidth: "580px",
-              margin: 0,
+              margin: "0 0 1.5rem 0",
             }}
           >
             From professional meeting halls and workstations to refreshing
             outdoor activities for all ages in Kakuma 3 Zone 2 Block 8 (Burundi
             Market).
           </p>
+
+          {/* Hero Cafeteria Link / CTA */}
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <Button
+              to="/cafeteria"
+              style={{
+                backgroundColor: theme.orange,
+                color: "#ffffff",
+                border: "none",
+              }}
+            >
+              Visit Cafeteria & Order Food
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -221,6 +243,76 @@ export default function ServicesPage() {
 
         <div
           style={{
+            backgroundColor: theme.orange,
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 520px), 1fr))",
+            color: "#ffffff",
+            overflow: "hidden",
+            borderLeft: `8px solid ${theme.espresso}`,
+          }}
+        >
+          <img
+            src={cafeteriaImg}
+            alt="Huru Garden cafeteria"
+            style={{
+              width: "100%",
+              height: "100%",
+              minHeight: "280px",
+              objectFit: "cover",
+            }}
+          />
+          <div style={{ padding: "2.5rem" }}>
+            <p
+              style={{
+                margin: "0 0 0.75rem",
+                color: theme.yellow,
+                fontSize: "0.8rem",
+                fontWeight: 700,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+              }}
+            >
+              The heart of Huru Garden
+            </p>
+            <h3
+              style={{
+                fontFamily: theme.fontHeading,
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                lineHeight: 1,
+                margin: "0 0 1rem",
+              }}
+            >
+              Eat, meet &
+              <br />
+              <i style={{ color: theme.espresso }}>stay awhile.</i>
+            </h3>
+            <p
+              style={{
+                maxWidth: "480px",
+                margin: "0 0 1.5rem",
+                lineHeight: 1.6,
+              }}
+            >
+              Our cafeteria brings every Huru experience together, with good
+              food and refreshments ready for guests, teams, families, and
+              friends.
+            </p>
+            <Button
+              to="/cafeteria"
+              style={{
+                backgroundColor: theme.espresso,
+                color: "#ffffff",
+                border: "none",
+              }}
+            >
+              Explore Cafeteria
+            </Button>
+          </div>
+        </div>
+
+        <div
+          style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
             gap: "2rem",
@@ -231,10 +323,8 @@ export default function ServicesPage() {
               key={service.title}
               style={{
                 backgroundColor: "#ffffff",
-                borderRadius: "16px",
                 overflow: "hidden",
                 border: "1px solid rgba(41, 19, 12, 0.08)",
-                boxShadow: "0 8px 24px rgba(41, 19, 12, 0.04)",
                 display: "flex",
                 flexDirection: "column",
               }}
@@ -363,7 +453,9 @@ export default function ServicesPage() {
                       </Button>
                     ) : (
                       <Button
-                        to={`/events?service=${encodeURIComponent(service.title)}`}
+                        to={`/events?service=${encodeURIComponent(
+                          service.title,
+                        )}`}
                         style={{
                           flex: 1,
                           textAlign: "center",
@@ -427,10 +519,8 @@ export default function ServicesPage() {
               key={act.activity}
               style={{
                 backgroundColor: "#ffffff",
-                borderRadius: "16px",
                 overflow: "hidden",
                 border: "1px solid rgba(41, 19, 12, 0.08)",
-                boxShadow: "0 8px 24px rgba(41, 19, 12, 0.04)",
                 display: "flex",
                 flexDirection: "column",
               }}
@@ -535,15 +625,7 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        <div
-          style={{
-            marginTop: "3rem",
-            padding: "2rem",
-            backgroundColor: "#ffffff",
-            borderRadius: "16px",
-            border: "1px solid rgba(41, 19, 12, 0.08)",
-          }}
-        >
+        <div>
           <h4
             style={{
               fontFamily: theme.fontHeading,
@@ -554,15 +636,7 @@ export default function ServicesPage() {
           >
             Booking & Cancellation Terms
           </h4>
-          <ul
-            style={{
-              margin: 0,
-              paddingLeft: "1.25rem",
-              color: theme.espresso,
-              fontSize: "0.9rem",
-              lineHeight: 1.7,
-            }}
-          >
+          <ul>
             <li>
               Bookings are confirmed after we receive your request and details.
             </li>
