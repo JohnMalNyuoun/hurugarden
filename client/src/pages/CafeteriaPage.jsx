@@ -3,6 +3,9 @@ import React, { useState } from "react";
 // Photo Imports
 import cafeteriaImg from "../../../assets/762372387_122119643931272215_4697147077892752819_n.jpg";
 import eventImg from "../../../assets/huruchill.jpg";
+import beerimg from "../../../assets/beer.jpg";
+import wineimg from "../../../assets/chips.jpg";
+import juiceimg from "../../../assets/freshbeer.jpg";
 import sodaimg from "../../../assets/fata.jpg";
 import kukuimg from "../../../assets/kuku.jpg";
 import jonimg from "../../../assets/jonwalker.jpg";
@@ -14,6 +17,7 @@ import chipsImg from "../../../assets/chips.jpg";
 import fataImg from "../../../assets/fata.jpg";
 import freshbeerImg from "../../../assets/freshie.jpg";
 import cokeImg from "../../../assets/coke.jpg";
+import colaImg from "../../../assets/cola.jpg";
 import sweetfriesImg from "../../../assets/sweetfries.jpg";
 import vodkaImg from "../../../assets/vodka.jpg";
 
@@ -149,7 +153,7 @@ const menuItemsData = [
     category: "Spirits & Drinks",
     desc: "Selection of cold local and international beers served frost-chilled directly to your group.",
     price: "Order Online",
-    image: null,
+    image: beerimg,
   },
 ];
 
