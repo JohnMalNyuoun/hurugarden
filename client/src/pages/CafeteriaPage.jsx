@@ -3,21 +3,18 @@ import React, { useState } from "react";
 // Photo Imports
 import cafeteriaImg from "../../../assets/762372387_122119643931272215_4697147077892752819_n.jpg";
 import eventImg from "../../../assets/huruchill.jpg";
-import beerimg from "../../../assets/beer.jpg";
-import wineimg from "../../../assets/chips.jpg";
-import juiceimg from "../../../assets/freshbeer.jpg";
+import beerimg from "../../../assets/Beer.jpg";
 import sodaimg from "../../../assets/fata.jpg";
 import kukuimg from "../../../assets/kuku.jpg";
 import jonimg from "../../../assets/jonwalker.jpg";
 import jamesImg from "../../../assets/jameswalker.jpg";
-import nyamachomaImg from "../../../assets/nyamachoma.jpg";
+import nyamachomaImg from "../../../assets/Nyamachoma.jpg";
 import mzingImg from "../../../assets/Mzinga.jpg";
 import sweetbeefImg from "../../../assets/sweetbeef.jpg";
 import chipsImg from "../../../assets/chips.jpg";
 import fataImg from "../../../assets/fata.jpg";
 import freshbeerImg from "../../../assets/freshie.jpg";
 import cokeImg from "../../../assets/coke.jpg";
-import colaImg from "../../../assets/cola.jpg";
 import sweetfriesImg from "../../../assets/sweetfries.jpg";
 import vodkaImg from "../../../assets/vodka.jpg";
 
@@ -179,7 +176,14 @@ export default function CafeteriaPage() {
   });
 
   return (
-    <div style={{ background: theme.cream, minHeight: "100vh", overflowX: "hidden", fontFamily: "system-ui, -apple-system, sans-serif" }}>
+    <div
+      style={{
+        background: theme.cream,
+        minHeight: "100vh",
+        overflowX: "hidden",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+      }}
+    >
       {/* Dynamic CSS styles */}
       <style>{`
         .hero-section {
@@ -263,7 +267,10 @@ export default function CafeteriaPage() {
           letterSpacing: "0.03em",
         }}
       >
-        <span>Ordering within Huru? Food & drinks served directly to your table, office, or hall!</span>
+        <span>
+          Ordering within Huru? Food & drinks served directly to your table,
+          office, or hall!
+        </span>
         <a
           href={STORE_URL}
           target="_blank"
@@ -275,7 +282,7 @@ export default function CafeteriaPage() {
             textDecoration: "underline",
           }}
         >
-          Order Online Now 
+          Order Online Now
         </a>
       </div>
 
@@ -315,7 +322,9 @@ export default function CafeteriaPage() {
           >
             Eat well,
             <br />
-            <i style={{ color: theme.yellow, fontStyle: "italic" }}>stay longer.</i>
+            <i style={{ color: theme.yellow, fontStyle: "italic" }}>
+              stay longer.
+            </i>
           </h1>
           <p
             style={{
@@ -326,12 +335,21 @@ export default function CafeteriaPage() {
               margin: "0 0 2rem",
             }}
           >
-            Order directly to your table in Huru Garden, Huru Garden Hall, your private office within Huru, 
-            or your freelance workspace. We serve your guests with the best food and drinks, and let Huru manage your event seamlessly.
+            Order directly to your table in Huru Garden, Huru Garden Hall, your
+            private office within Huru, or your freelance workspace. We serve
+            your guests with the best food and drinks, and let Huru manage your
+            event seamlessly.
           </p>
 
           {/* Primary Call To Action */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "1rem",
+              alignItems: "center",
+            }}
+          >
             <a
               href={STORE_URL}
               target="_blank"
@@ -359,7 +377,13 @@ export default function CafeteriaPage() {
       </section>
 
       {/* Intro Heading Section */}
-      <section style={{ maxWidth: "1200px", margin: "0 auto", padding: "4rem 1.5rem 2rem" }}>
+      <section
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "4rem 1.5rem 2rem",
+        }}
+      >
         <div
           className="intro-grid"
           style={{
@@ -394,16 +418,31 @@ export default function CafeteriaPage() {
               <i style={{ color: theme.orange }}>in the middle of it.</i>
             </h2>
           </div>
-          <p style={{ color: "#655b56", lineHeight: 1.8, margin: 0, fontSize: "1.05rem" }}>
-            Whether you are working at a freelance table, hosting in your private office, or gathering guests in Huru Garden Hall, 
-            our team serves hot meals, cold drinks, and nyama choma straight to your spot within Huru. Let Huru manage your complete event catering.
+          <p
+            style={{
+              color: "#655b56",
+              lineHeight: 1.8,
+              margin: 0,
+              fontSize: "1.05rem",
+            }}
+          >
+            Whether you are working at a freelance table, hosting in your
+            private office, or gathering guests in Huru Garden Hall, our team
+            serves hot meals, cold drinks, and nyama choma straight to your spot
+            within Huru. Let Huru manage your complete event catering.
           </p>
         </div>
       </section>
 
       {/* Interactive Menu Section */}
-      <section id="interactive-menu" style={{ maxWidth: "1200px", margin: "0 auto", padding: "1rem 1.5rem 5rem" }}>
-        
+      <section
+        id="interactive-menu"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "1rem 1.5rem 5rem",
+        }}
+      >
         {/* Search & Category Filter Controls */}
         <div style={{ marginBottom: "2.5rem" }}>
           <div
@@ -425,7 +464,8 @@ export default function CafeteriaPage() {
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
                   style={{
-                    background: activeCategory === cat ? theme.espresso : "transparent",
+                    background:
+                      activeCategory === cat ? theme.espresso : "transparent",
                     color: activeCategory === cat ? "#ffffff" : theme.espresso,
                     border: `1px solid ${activeCategory === cat ? theme.espresso : "rgba(41,19,12,0.2)"}`,
                     padding: "0.6rem 1.2rem",
@@ -465,10 +505,21 @@ export default function CafeteriaPage() {
 
         {/* Dynamic Food Gallery Cards */}
         {filteredItems.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "4rem 1.5rem", color: "#888" }}>
-            <p style={{ fontSize: "1.2rem" }}>No menu items found matching your search.</p>
+          <div
+            style={{
+              textAlign: "center",
+              padding: "4rem 1.5rem",
+              color: "#888",
+            }}
+          >
+            <p style={{ fontSize: "1.2rem" }}>
+              No menu items found matching your search.
+            </p>
             <button
-              onClick={() => { setActiveCategory("All Menu"); setSearchQuery(""); }}
+              onClick={() => {
+                setActiveCategory("All Menu");
+                setSearchQuery("");
+              }}
               style={{
                 color: theme.orange,
                 background: "none",
@@ -505,7 +556,15 @@ export default function CafeteriaPage() {
                 }}
               >
                 {/* Image Container */}
-                <div style={{ position: "relative", width: "100%", height: "230px", overflow: "hidden", background: theme.sand }}>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "230px",
+                    overflow: "hidden",
+                    background: theme.sand,
+                  }}
+                >
                   <img
                     src={item.image}
                     alt={item.title}
@@ -515,12 +574,17 @@ export default function CafeteriaPage() {
                       objectFit: "cover",
                     }}
                   />
-                  
-              
                 </div>
 
                 {/* Card Body */}
-                <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", flexGrow: 1 }}>
+                <div
+                  style={{
+                    padding: "1.5rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    flexGrow: 1,
+                  }}
+                >
                   <h3
                     style={{
                       color: theme.espresso,
@@ -591,7 +655,14 @@ export default function CafeteriaPage() {
             objectFit: "cover",
           }}
         />
-        <div style={{ padding: "4rem 2rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div
+          style={{
+            padding: "4rem 2rem",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <p
             style={{
               color: theme.yellow,
@@ -613,25 +684,69 @@ export default function CafeteriaPage() {
           >
             Let Huru manage your event.
           </h2>
-          <p style={{ color: "#d6c9c4", lineHeight: 1.8, maxWidth: "460px", marginBottom: "2rem" }}>
-            Planning a gathering, meeting, or event? We handle complete food, drink, and seating arrangements across Huru Garden, 
-            the Huru Garden Hall, private offices, and freelance spaces. Let us serve your guests with premium refreshments.
+          <p
+            style={{
+              color: "#d6c9c4",
+              lineHeight: 1.8,
+              maxWidth: "460px",
+              marginBottom: "2rem",
+            }}
+          >
+            Planning a gathering, meeting, or event? We handle complete food,
+            drink, and seating arrangements across Huru Garden, the Huru Garden
+            Hall, private offices, and freelance spaces. Let us serve your
+            guests with premium refreshments.
           </p>
 
           <div style={{ display: "grid", gap: "1rem", marginBottom: "2.5rem" }}>
-            <span style={{ display: "flex", alignItems: "center", color: theme.yellow, fontWeight: 600 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: theme.yellow,
+                fontWeight: 600,
+              }}
+            >
               • Served directly to your table in Huru Garden
             </span>
-            <span style={{ display: "flex", alignItems: "center", color: theme.yellow, fontWeight: 600 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: theme.yellow,
+                fontWeight: 600,
+              }}
+            >
               • Catering for meetings in Huru Garden Hall
             </span>
-            <span style={{ display: "flex", alignItems: "center", color: theme.yellow, fontWeight: 600 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: theme.yellow,
+                fontWeight: 600,
+              }}
+            >
               • Refreshments served to your private office within Huru
             </span>
-            <span style={{ display: "flex", alignItems: "center", color: theme.yellow, fontWeight: 600 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: theme.yellow,
+                fontWeight: 600,
+              }}
+            >
               • Meals delivered to your freelance table within Huru
             </span>
-            <span style={{ display: "flex", alignItems: "center", color: theme.yellow, fontWeight: 600 }}>
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: theme.yellow,
+                fontWeight: 600,
+              }}
+            >
               • Full event hosting & guest drink management
             </span>
           </div>
@@ -677,10 +792,18 @@ export default function CafeteriaPage() {
               fontWeight: 500,
             }}
           >
-            Order ahead for your table, office, or event. Instant in house orders are available on our store portal.
+            Order ahead for your table, office, or event. Instant in house
+            orders are available on our store portal.
           </p>
 
-          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "1rem",
+              flexWrap: "wrap",
+            }}
+          >
             <a
               href={STORE_URL}
               target="_blank"

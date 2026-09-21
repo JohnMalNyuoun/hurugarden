@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/ui/Button";
 import playimg from "../../../assets/play.jpg";
-import play2img from "../../../assets/yoga.jpg";
+import play2img from "../../../assets/play2.jpg";
 import playimg4 from "../../../assets/play4.png";
 import slideimg from "../../../assets/slide.jpg";
 import trimpoline from "../../../assets/triopoline.jpg";
@@ -25,7 +25,7 @@ const theme = {
 
 export default function PlayPage() {
   const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
+    typeof window !== "undefined" ? window.innerWidth <= 768 : false,
   );
 
   useEffect(() => {
@@ -193,7 +193,9 @@ export default function PlayPage() {
           </div>
 
           {/* Text Content Container (Right side) */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          >
             <p
               style={{
                 color: theme.orange,
@@ -431,7 +433,9 @@ export default function PlayPage() {
             >
               Hungry or Thirsty?
               <br />
-              <i style={{ color: theme.orange, fontStyle: "italic" }}>Visit Our Cafeteria</i>
+              <i style={{ color: theme.orange, fontStyle: "italic" }}>
+                Visit Our Cafeteria
+              </i>
             </h2>
 
             <p
@@ -442,9 +446,10 @@ export default function PlayPage() {
                 margin: 0,
               }}
             >
-              Recharge with crispy golden chips, delicious kid-friendly hot meals,
-              refreshing chilled juices, ice-cold soft drinks like Fanta, and hot
-              beverages for parents. The perfect stop before, during, or after playtime!
+              Recharge with crispy golden chips, delicious kid-friendly hot
+              meals, refreshing chilled juices, ice-cold soft drinks like Fanta,
+              and hot beverages for parents. The perfect stop before, during, or
+              after playtime!
             </p>
 
             <div style={{ marginTop: "0.5rem" }}>

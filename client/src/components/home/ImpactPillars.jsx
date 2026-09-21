@@ -4,7 +4,7 @@ import playImg from "../../../../assets/huruchill1.jpg";
 import YogaImg from "../../../../assets/yoga.jpg";
 import hallimg from "../../../../assets/hall.png";
 import hurueventimg from "../../../../assets/huruevent1.jpg";
-import nyamaimg from "../../../../assets/nyamachoma.jpg";
+import nyamaimg from "../../../../assets/Nyamachoma.jpg";
 
 const theme = {
   espresso: "#29130c",
@@ -312,7 +312,7 @@ export default function ImpactPillars() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             color: "#ffffff",
-            
+
             textDecoration: "none",
             gap: "2rem",
             transition: "transform 0.2s ease",
@@ -358,8 +358,9 @@ export default function ImpactPillars() {
                 maxWidth: "600px",
               }}
             >
-              Whether you need fresh local meals, hot coffee, refreshing cold drinks,
-              or a welcoming space to share stories with friends, our kitchen is always warm and ready for you.
+              Whether you need fresh local meals, hot coffee, refreshing cold
+              drinks, or a welcoming space to share stories with friends, our
+              kitchen is always warm and ready for you.
             </p>
           </div>
 

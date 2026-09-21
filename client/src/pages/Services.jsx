@@ -6,7 +6,6 @@ import hurutrainingimg from "../../../assets/hurutraining.jpg";
 import huruchill1img from "../../../assets/huruchill1.jpg";
 import cafeteriaImg from "../../../assets/762372387_122119643931272215_4697147077892752819_n.jpg";
 import pool from "../../../assets/pool.jpg";
-import car from "../../../assets/carforkid.jpg";
 import kidscar from "../../../assets/makekidhappy.jpg";
 import bouncingimag from "../../../assets/bouncing.jpg";
 import childrenswim from "../../../assets/childrenpool.jpg";
