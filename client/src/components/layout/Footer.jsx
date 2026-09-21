@@ -50,6 +50,13 @@ export default function Footer() {
           </div>
 
           <div>
+            <small>Legal & Policies</small>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms-of-service">Terms of Service</Link>
+            <Link to="/cookie-policy">Cookie Policy</Link>
+          </div>
+
+          <div>
             <small>Visit us</small>
             <span>
               <a

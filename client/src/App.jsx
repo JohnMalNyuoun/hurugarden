@@ -9,7 +9,11 @@ import Services from "./pages/Services";
 import EventsPage from "./pages/EventsPage";
 import ContactPage from "./pages/ContactPage";
 import CafeteriaPage from "./pages/CafeteriaPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import CookiePolicy from "./pages/CookiePolicy";
 import RouteSEO from "./components/common/RouteSEO";
+import CookieBanner from "./components/common/CookieBanner"; // Import banner component
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -36,8 +40,15 @@ export default function App() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/cafeteria" element={<CafeteriaPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
         </Routes>
       </main>
+      
+      {/* Renders banner immediately on initial load */}
+      <CookieBanner />
+      
       <Footer />
     </div>
   );
