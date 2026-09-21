@@ -16,7 +16,7 @@ import freshbeerImg from "../../../assets/freshie.jpg";
 import cokeImg from "../../../assets/coke.jpg";
 import sweetfriesImg from "../../../assets/sweetfries.jpg";
 import vodkaImg from "../../../assets/vodka.jpg";
-import beerImg from "../../../assets/beer.jpg";
+
 // Store link configuration
 const STORE_URL = "https://cafeteria-services.myshopeak.com";
 
@@ -149,7 +149,7 @@ const menuItemsData = [
     category: "Spirits & Drinks",
     desc: "Selection of cold local and international beers served frost-chilled directly to your group.",
     price: "Order Online",
-    image: beerImg,
+    image: null,
   },
 ];
 
