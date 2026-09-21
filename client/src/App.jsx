@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import EventsPage from "./pages/EventsPage";
 import ContactPage from "./pages/ContactPage";
 import CafeteriaPage from "./pages/CafeteriaPage";
+import RouteSEO from "./components/common/RouteSEO";
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <div className="app-shell">
       <ScrollToTop />
+      <RouteSEO />
       <Navbar />
       <main>
         <Routes>
