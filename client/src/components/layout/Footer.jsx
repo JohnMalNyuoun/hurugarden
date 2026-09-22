@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Mail, MapPin, Phone, Facebook, Twitter } from "lucide-react";
-import logo from "../../../../assets/Logo.jpg";
+import logo from "../../../../assets/favicon.jpg";
 
 // Custom SVG Icon for TikTok
 const TikTokIcon = ({ size = 17 }) => (

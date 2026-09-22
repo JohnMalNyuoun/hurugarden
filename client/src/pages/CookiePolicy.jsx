@@ -55,7 +55,7 @@ export default function CookiePolicy() {
                   </tr>
                   <tr>
                     <td><strong>Analytics</strong></td>
-                    <td>Measures visitor traffic and page performance via Google Analytics.</td>
+                    <td>Measures visitor traffic and page performance via Meta Pixel and Google Analytics.</td>
                     <td>2 Years</td>
                   </tr>
                 </tbody>

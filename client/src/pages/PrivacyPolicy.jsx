@@ -50,7 +50,7 @@ export default function PrivacyPolicy() {
             <p>We do not sell, rent, or trade your personal data. Data is shared exclusively with necessary operational partners under strict confidentiality agreements:</p>
             <ul>
               <li><strong>Payment Gateways:</strong> Safaricom M-Pesa and payment gateways to process transactions securely.</li>
-              <li><strong>Hosting & Analytics:</strong> Cloud infrastructure (Vercel/Render) and analytics providers (Google Analytics) operating with strict encryption protocols.</li>
+              <li><strong>Hosting & Analytics:</strong> Cloud infrastructure (Vercel/Render) and analytics providers (Meta Pixel and Google Analytics) operating with strict encryption protocols.</li>
               <li><strong>Legal Authorities:</strong> Disclosed only when legally required by judicial order or statutory enforcement in Kenya.</li>
             </ul>
           </section>

@@ -16,6 +16,7 @@ export default function CookieBanner() {
 
   const handleAccept = () => {
     localStorage.setItem("huru_cookie_consent", "accepted");
+    window.dispatchEvent(new Event("huru:analytics-consent-granted"));
     setIsVisible(false);
   };
 

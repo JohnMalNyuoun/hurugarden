@@ -14,6 +14,7 @@ import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import RouteSEO from "./components/common/RouteSEO";
 import CookieBanner from "./components/common/CookieBanner"; // Import banner component
+import MetaPixel from "./components/common/MetaPixel";
 
 function ScrollToTop() {
   const { pathname, search } = useLocation();
@@ -30,6 +31,7 @@ export default function App() {
     <div className="app-shell">
       <ScrollToTop />
       <RouteSEO />
+      <MetaPixel />
       <Navbar />
       <main>
         <Routes>
